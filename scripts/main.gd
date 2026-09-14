@@ -2,7 +2,7 @@ extends Node3D
 
 # PROPERTIES
 
-@onready var player = $Player
+@onready var player = $Players/Player
 
 
 # FUNCTIONS

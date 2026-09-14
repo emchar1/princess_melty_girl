@@ -7,32 +7,34 @@
 script = ExtResource("1_wpook")
 rope_segment_scene = ExtResource("2_jbdld")
 
-[node name="BodyAnchor" type="PinJoint3D" parent="." unique_id=418975601]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+[node name="J0" type="PinJoint3D" parent="." unique_id=1044128681]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 node_b = NodePath("../S0")
 
 [node name="S0" parent="." unique_id=968083777 instance=ExtResource("2_jbdld")]
 
-[node name="J0" type="PinJoint3D" parent="." unique_id=1044128681]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+[node name="J1" type="PinJoint3D" parent="." unique_id=1618154296]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 node_a = NodePath("../S0")
 node_b = NodePath("../S1")
 
 [node name="S1" parent="." unique_id=1136771301 instance=ExtResource("2_jbdld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
-[node name="J1" type="PinJoint3D" parent="." unique_id=1618154296]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+[node name="J2" type="PinJoint3D" parent="." unique_id=726090237]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 node_a = NodePath("../S1")
 node_b = NodePath("../S2")
 
 [node name="S2" parent="." unique_id=347805437 instance=ExtResource("2_jbdld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 
-[node name="J2" type="PinJoint3D" parent="." unique_id=726090237]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="J3" type="PinJoint3D" parent="." unique_id=1255746245]
 node_a = NodePath("../S2")
 node_b = NodePath("../S3")
 
 [node name="S3" parent="." unique_id=1497003229 instance=ExtResource("2_jbdld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+
+[node name="JN" type="PinJoint3D" parent="." unique_id=1252095624]
+node_a = NodePath("../S3")

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://caykrja4so5q"]
+
+[ext_resource type="Script" uid="uid://rule15drqv8p" path="res://player/princess.gd" id="1_6fqlj"]
+[ext_resource type="Texture2D" uid="uid://yerhnolasorx" path="res://assets/images/princess.png" id="1_kvulj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lb7rc"]
+radius = 1.0
+height = 3.0
+
+[node name="Princess" type="RigidBody3D" unique_id=25434966]
+collision_layer = 32
+mass = 0.02
+script = ExtResource("1_6fqlj")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=525638918]
+pixel_size = 0.1
+texture_filter = 0
+texture = ExtResource("1_kvulj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=805472634]
+shape = SubResource("CapsuleShape3D_lb7rc")
