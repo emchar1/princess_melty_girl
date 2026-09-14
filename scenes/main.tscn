@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dot6xyospkuer"]
+
+[ext_resource type="PackedScene" uid="uid://csgxc03yt7ihn" path="res://level_map/level_map.tscn" id="1_0wfyh"]
+[ext_resource type="Script" uid="uid://cs5gquwnuane" path="res://scripts/main.gd" id="1_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://crguhacejokd0" path="res://player/player.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://dqoe8mtm7tejm" path="res://scenes/camera_controller.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://5bjv713d8hxf" path="res://player/rope/rope.tscn" id="5_tbgi4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jpsmn"]
+sky_top_color = Color(0.21960784, 0.6, 0.94509804, 1)
+sky_horizon_color = Color(0.94509804, 0.34901962, 0.03529412, 1)
+ground_bottom_color = Color(0.2939485, 0.2516118, 0.2040109, 1)
+ground_horizon_color = Color(0.14252639, 0.2943163, 0.11897167, 1)
+ground_curve = 0.15
+
+[sub_resource type="Sky" id="Sky_lb7rc"]
+sky_material = SubResource("ProceduralSkyMaterial_jpsmn")
+
+[sub_resource type="Environment" id="Environment_u3pco"]
+background_mode = 2
+sky = SubResource("Sky_lb7rc")
+
+[node name="Main" type="Node3D" unique_id=881640253]
+script = ExtResource("1_jyhfs")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1490713581]
+environment = SubResource("Environment_u3pco")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1459856530]
+transform = Transform3D(1, 0, 0, 0, 0.9702957, 0.2419219, 0, -0.2419219, 0.9702957, 0, 8, 0)
+
+[node name="CameraController" parent="." unique_id=1839571792 instance=ExtResource("3_sugp2")]
+
+[node name="LevelMap" parent="." unique_id=373524544 instance=ExtResource("1_0wfyh")]
+
+[node name="Player" parent="." unique_id=449852330 instance=ExtResource("2_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="Rope" parent="." unique_id=1766525145 node_paths=PackedStringArray("body_anchor") instance=ExtResource("5_tbgi4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.594589, 4.2414856, 0)
+body_anchor = NodePath("../Player")

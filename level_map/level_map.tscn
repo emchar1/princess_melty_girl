@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://csgxc03yt7ihn"]
+
+[ext_resource type="PackedScene" uid="uid://dw7aqj8o2mna7" path="res://level_map/platform2d.tscn" id="1_1mo80"]
+[ext_resource type="PackedScene" uid="uid://bbt8wj0i5gbdi" path="res://level_map/ledge2d.tscn" id="2_p3b6q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lb7rc"]
+size = Vector3(1, 20, 5)
+
+[node name="LevelMap" type="Node3D" unique_id=373524544]
+
+[node name="Wall" type="StaticBody3D" parent="." unique_id=793425196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5, 9.5, 0)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall" unique_id=1503088690]
+shape = SubResource("BoxShape3D_lb7rc")
+
+[node name="Platform2d" parent="." unique_id=1153854080 instance=ExtResource("1_1mo80")]
+
+[node name="Platform2d2" parent="." unique_id=760288547 instance=ExtResource("1_1mo80")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, 0)
+
+[node name="Ledge2d" parent="." unique_id=173897228 instance=ExtResource("2_p3b6q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 6, 0)
+collision_mask = 19
+
+[node name="Ledge2d2" parent="." unique_id=30126203 instance=ExtResource("2_p3b6q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 12, 0)
+
+[node name="Ledge2d3" parent="." unique_id=1945214129 instance=ExtResource("2_p3b6q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 18, 0)
+
+[node name="Ledge2d4" parent="." unique_id=316758731 instance=ExtResource("2_p3b6q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 24, 0)
+
+[node name="Ledge2d5" parent="." unique_id=352880687 instance=ExtResource("2_p3b6q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 30, 0)
+
+[node name="Ledge2d6" parent="." unique_id=1066067549 instance=ExtResource("2_p3b6q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 36, 0)
+
+[node name="Ledge2d7" parent="." unique_id=833378228 instance=ExtResource("2_p3b6q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 42, 0)
+
+[node name="Ledge2d8" parent="." unique_id=1408341578 instance=ExtResource("2_p3b6q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 48, 0)
+
+[node name="Ledge2d9" parent="." unique_id=905951672 instance=ExtResource("2_p3b6q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 54, 0)

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://crguhacejokd0"]
+
+[ext_resource type="Texture2D" uid="uid://draqtkxkne8bi" path="res://assets/images/mario.png" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://bpnjmfijickqf" path="res://player/player.gd" id="1_rkbax"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u3pco"]
+radius = 1.0589983
+
+[node name="Player" type="CharacterBody3D" unique_id=449852330 groups=["player"]]
+collision_layer = 2
+script = ExtResource("1_rkbax")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1750580925]
+pixel_size = 0.1
+texture_filter = 0
+texture = ExtResource("1_oul6g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=684222070]
+shape = SubResource("SphereShape3D_u3pco")
