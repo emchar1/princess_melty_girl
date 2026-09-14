@@ -3,7 +3,7 @@ class_name RopeSegment
 
 # PROPERTIES
 
-@export var joint_padding: float = 0.05
+@export var joint_padding: float = 0.0
 
 var start_point: Vector3
 var end_point: Vector3

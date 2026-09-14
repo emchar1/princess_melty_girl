@@ -28,6 +28,9 @@ func _physics_process(delta: float) -> void:
 	
 	# Comment to disable coyote time.
 	_add_coyote_time()
+	
+	if global_position.y <= -20:
+		_die()
 
 
 # HELPER FUNCTIONS
@@ -35,9 +38,6 @@ func _physics_process(delta: float) -> void:
 func _apply_gravity(delta: float):
 	if not is_on_floor():
 		velocity.y += get_gravity().y * delta
-	
-	if global_position.y <= -20:
-		dead.emit()
 
 
 func _move_player():
@@ -82,6 +82,12 @@ func _add_coyote_time():
 			add_child(coyote_time)
 			coyote_time.start()
 
+
+func _die():
+	dead.emit()
+
+
+# SIGNAL CALLBACK FUNCTIONS
 
 func _on_coyote_time_timeout():
 	coyote_time.queue_free()
