@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yerhnolasorx"
-path="res://.godot/imported/princess.png-5034f1bb1f78c41397eeb9d2cc59743e.ctex"
+uid="uid://dd5fpjjnca8qe"
+path.s3tc="res://.godot/imported/time.png-bb58e9b290c548dc571e74b5f86ed8c8.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://assets/images/princess.png"
-dest_files=["res://.godot/imported/princess.png-5034f1bb1f78c41397eeb9d2cc59743e.ctex"]
+source_file="res://assets/images/time.png"
+dest_files=["res://.godot/imported/time.png-bb58e9b290c548dc571e74b5f86ed8c8.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -23,7 +24,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

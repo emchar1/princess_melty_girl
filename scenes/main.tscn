@@ -4,8 +4,9 @@
 [ext_resource type="Script" uid="uid://cs5gquwnuane" path="res://scripts/main.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://crguhacejokd0" path="res://player/player.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dqoe8mtm7tejm" path="res://scenes/camera_controller.tscn" id="3_sugp2"]
-[ext_resource type="PackedScene" uid="uid://5bjv713d8hxf" path="res://player/rope/rope.tscn" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://5bjv713d8hxf" path="res://player/rope/rope.tscn" id="5_tefeu"]
 [ext_resource type="PackedScene" uid="uid://caykrja4so5q" path="res://player/princess.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://bm5b3nqwa1k2k" path="res://scenes/hud.tscn" id="7_o6xl0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jpsmn"]
 sky_top_color = Color(0.21960784, 0.6, 0.94509804, 1)
@@ -37,12 +38,19 @@ transform = Transform3D(1, 0, 0, 0, 0.9702957, 0.2419219, 0, -0.2419219, 0.97029
 [node name="Players" type="Node3D" parent="." unique_id=712720316]
 
 [node name="Player" parent="Players" unique_id=449852330 instance=ExtResource("2_sugp2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8124762, 5, 0)
 
-[node name="Rope" parent="Players" unique_id=1766525145 node_paths=PackedStringArray("anchor0", "anchor1") instance=ExtResource("5_tbgi4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.594589, 4.2414856, 0)
+[node name="Rope" parent="Players" unique_id=1766525145 node_paths=PackedStringArray("anchor0", "anchor1") instance=ExtResource("5_tefeu")]
 anchor0 = NodePath("../Player")
 anchor1 = NodePath("../Princess")
 
 [node name="Princess" parent="Players" unique_id=865348650 instance=ExtResource("6_tefeu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8671713, 2.8146057, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9419384, 2.3519022, 0)
+
+[node name="Hud" parent="." unique_id=552210213 instance=ExtResource("7_o6xl0")]
+
+[node name="GameOverTimer" type="Timer" parent="." unique_id=401398663]
+wait_time = 30.0
+autostart = true
+
+[connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]

@@ -2,7 +2,7 @@ extends Node3D
 
 # PROPERTIES
 
-const MIN_LENGTH: int = 4
+const MIN_LENGTH: int = 1
 const MAX_LENGTH: int = 20
 
 @export var rope_segment_scene: PackedScene
@@ -17,9 +17,7 @@ var rope_length: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	segments = [
-		$J0, $S0, $J1, $S1, $J2, $S2, $J3, $S3, $JN
-	]
+	segments = [$J0, $S0, $JN]
 	
 	# Join player to beginning
 	if anchor0:
@@ -31,11 +29,19 @@ func _ready() -> void:
 	else:
 		print("Can't find anchor0. Unable to attach rope!")
 	
-	_join_segments($S0, $J1, $S1)
-	_join_segments($S1, $J2, $S2)
-	_join_segments($S2, $J3, $S3)
-	
-	add_segments(10)
+	add_segments(4)
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("add_rope_segment"):
+		if rope_length + 1 <= MAX_LENGTH:
+			add_segments()
+			AudioManager.play(AudioData.AudioKey.TICK)
+	elif event.is_action_pressed("subtract_rope_segment"):
+		if rope_length - 1 >= MIN_LENGTH:
+			subtract_segments()
+			AudioManager.play(AudioData.AudioKey.TICK)
+
 
 
 func add_segments(amount: int = 1):
@@ -69,8 +75,29 @@ func add_segments(amount: int = 1):
 	_set_rope_length()
 
 
-func subtract_segments(_amount: int = 1):
-	pass
+func subtract_segments(amount: int = 1):
+	if rope_length - amount < MIN_LENGTH:
+		return
+	
+	var jn = segments.pop_back()
+	
+	remove_child(jn)
+	
+	for i in range(amount):
+		var prev_segment = segments.pop_back() as RopeSegment
+		var joint = segments.pop_back() as PinJoint3D
+		
+		if not prev_segment or not joint:
+			print("Invalid rope segment and/or joint!")
+			return
+		
+		remove_child(joint)
+		remove_child(prev_segment)
+	
+	add_child(jn)
+	segments.append(jn)
+	_join_anchor1()
+	_set_rope_length()
 
 
 # HELPER FUNCTIONS

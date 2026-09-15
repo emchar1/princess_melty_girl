@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dw7aqj8o2mna7" path="res://level_map/platform2d.tscn" id="1_1mo80"]
 [ext_resource type="PackedScene" uid="uid://bbt8wj0i5gbdi" path="res://level_map/ledge2d.tscn" id="2_p3b6q"]
+[ext_resource type="PackedScene" uid="uid://big53pgka1637" path="res://scenes/pickup_time.tscn" id="3_pq1t8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lb7rc"]
 size = Vector3(1, 20, 5)
@@ -47,3 +48,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 48, 0)
 
 [node name="Ledge2d9" parent="." unique_id=905951672 instance=ExtResource("2_p3b6q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 54, 0)
+
+[node name="Pickups" type="Node3D" parent="." unique_id=1443802654]
+
+[node name="PickupTime" parent="Pickups" unique_id=669096469 instance=ExtResource("3_pq1t8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.083153, 8.248991, 0)
+
+[node name="PickupTime2" parent="Pickups" unique_id=1775403155 instance=ExtResource("3_pq1t8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.870113, 37.971542, 0)
+
+[node name="PickupTime3" parent="Pickups" unique_id=1548608430 instance=ExtResource("3_pq1t8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.116394, 55.97529, 0)

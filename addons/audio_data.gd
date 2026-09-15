@@ -3,7 +3,8 @@ extends Node
 # PROPERTIES
 
 enum AudioKey {
-	BGM
+	BGM,
+	TICK
 }
 
 enum Music {
@@ -25,5 +26,9 @@ var sounds := {
 	AudioKey.BGM: {
 		"type": Type.MUSIC_LOOP,
 		"stream": preload("res://assets/sounds/bgm.ogg")
+	},
+	AudioKey.TICK: {
+		"type": Type.SOUND,
+		"stream": preload("res://assets/sounds/tick.ogg")
 	}
 }

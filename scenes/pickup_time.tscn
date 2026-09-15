@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://big53pgka1637"]
+
+[ext_resource type="Script" uid="uid://x5p0r63ewntx" path="res://scripts/pickup_time.gd" id="1_xo5rh"]
+[ext_resource type="Texture2D" uid="uid://dd5fpjjnca8qe" path="res://assets/images/time.png" id="2_h5iv3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u3pco"]
+radius = 1.0
+
+[node name="PickupTime" type="Area3D" unique_id=669096469 groups=["pickup"]]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_xo5rh")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=338037213]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.048918903, 0, 0)
+pixel_size = 0.1
+texture_filter = 0
+texture = ExtResource("2_h5iv3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1068155856]
+shape = SubResource("SphereShape3D_u3pco")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
