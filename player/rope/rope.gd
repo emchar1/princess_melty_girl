@@ -1,19 +1,20 @@
 extends Node3D
+class_name Rope
 
 # PROPERTIES
 
-const MIN_LENGTH: int = 1
-const MAX_LENGTH: int = 20
+const MIN_SEGMENT_COUNT: int = 1
+const MAX_SEGMENT_COUNT: int = 20
 
 @export var rope_segment_scene: PackedScene
 @export var anchor0: Node3D
 @export var anchor1: Node3D
 
 var segments: Array[Node3D]
-var rope_length: int
+var rope_segment_count: int
 
 
-# FUNCTIONS
+# INIT FUNCTIONS
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,18 +35,23 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("add_rope_segment"):
-		if rope_length + 1 <= MAX_LENGTH:
+		if rope_segment_count + 1 <= MAX_SEGMENT_COUNT:
 			add_segments()
-			AudioManager.play(AudioData.AudioKey.TICK)
+			AudioManager.play(AudioData.AudioKey.MOUSE_WHEEL)
 	elif event.is_action_pressed("subtract_rope_segment"):
-		if rope_length - 1 >= MIN_LENGTH:
+		if rope_segment_count - 1 >= MIN_SEGMENT_COUNT:
 			subtract_segments()
-			AudioManager.play(AudioData.AudioKey.TICK)
+			AudioManager.play(AudioData.AudioKey.MOUSE_WHEEL)
 
+
+# PUBLIC FUNCTIONS
+
+func get_rope_length() -> float:
+	return rope_segment_count * $S0.segment_length
 
 
 func add_segments(amount: int = 1):
-	if rope_length + amount > MAX_LENGTH:
+	if rope_segment_count + amount > MAX_SEGMENT_COUNT:
 		return
 	
 	var jn = segments.pop_back()
@@ -72,11 +78,11 @@ func add_segments(amount: int = 1):
 	add_child(jn)
 	segments.append(jn)
 	_join_anchor1()
-	_set_rope_length()
+	_set_rope_segment_count()
 
 
 func subtract_segments(amount: int = 1):
-	if rope_length - amount < MIN_LENGTH:
+	if rope_segment_count - amount < MIN_SEGMENT_COUNT:
 		return
 	
 	var jn = segments.pop_back()
@@ -97,13 +103,13 @@ func subtract_segments(amount: int = 1):
 	add_child(jn)
 	segments.append(jn)
 	_join_anchor1()
-	_set_rope_length()
+	_set_rope_segment_count()
 
 
 # HELPER FUNCTIONS
 
-func _set_rope_length():
-	rope_length = int(floor(segments.size() / 2.0))
+func _set_rope_segment_count():
+	rope_segment_count = int(floor(segments.size() / 2.0))
 
 
 func _join_segments(s0: RopeSegment, j1: PinJoint3D, s1: RopeSegment):

@@ -59,6 +59,7 @@ func _process_jumping():
 	if jump_pressed and can_jump and not is_jumping:
 		velocity.y = jump_speed
 		is_jumping = true
+		AudioManager.play(AudioData.AudioKey.JUMP)
 
 
 func _add_coyote_time():

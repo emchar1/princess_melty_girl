@@ -44,8 +44,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8124762, 5, 0)
 anchor0 = NodePath("../Player")
 anchor1 = NodePath("../Princess")
 
-[node name="Princess" parent="Players" unique_id=865348650 instance=ExtResource("6_tefeu")]
+[node name="Princess" parent="Players" unique_id=865348650 node_paths=PackedStringArray("player", "rope") instance=ExtResource("6_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9419384, 2.3519022, 0)
+player = NodePath("../Player")
+rope = NodePath("../Rope")
 
 [node name="Hud" parent="." unique_id=552210213 instance=ExtResource("7_o6xl0")]
 

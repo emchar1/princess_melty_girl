@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://biebe6pmh4dcr" path="res://player/rope/rope_segment.gd" id="1_4jtqy"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_wpook"]
-top_radius = 0.15
-bottom_radius = 0.15
+top_radius = 0.16
+bottom_radius = 0.16
 height = 0.4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u3pco"]
