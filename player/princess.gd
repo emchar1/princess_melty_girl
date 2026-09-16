@@ -36,23 +36,18 @@ func _drag_princess():
 		print("Player or Rope not assigned!")
 		return
 	
-	var mouse_pos := get_viewport().get_mouse_position()
 	var camera := get_viewport().get_camera_3d()
 	var player_screen_pos := camera.unproject_position(player.global_position)
+	var mouse_pos := get_viewport().get_mouse_position()
 	
 	var direction := Vector2(
 		mouse_pos.x - player_screen_pos.x,
 		player_screen_pos.y - mouse_pos.y
 	).normalized()
 	
-	var target_pos := Vector3(
-		player_screen_pos.x,
-		player_screen_pos.y,
-		0.0
-	) + Vector3(
-		direction.x,
-		direction.y,
-		0.0
-	) * rope.get_rope_length()
+	var player_dist := player.global_position
+	var rope_dist := GameState.map_2d_to_3d(direction) * rope.get_rope_length()
+	var target_pos := player_dist + rope_dist
 	
-	global_position = target_pos
+	global_position = global_position.lerp(target_pos, 0.2)
+	rope.update_anchor1()

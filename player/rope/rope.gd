@@ -106,6 +106,17 @@ func subtract_segments(amount: int = 1):
 	_set_rope_segment_count()
 
 
+func update_anchor1():
+	var sn := segments[-2] as RopeSegment
+	
+	if sn == null or anchor1 == null:
+		print("Can't find anchor1 or last rope segment!")
+		return
+	
+	$JN.global_position = anchor1.global_position
+	sn.global_position = $JN.global_position - sn.start_point
+
+
 # HELPER FUNCTIONS
 
 func _set_rope_segment_count():
@@ -121,18 +132,13 @@ func _join_segments(s0: RopeSegment, j1: PinJoint3D, s1: RopeSegment):
 
 
 func _join_anchor1():
-	if not anchor1:
-		print("Can't find anchor1. Unable to attach rope!")
+	var sn := segments[-2] as RopeSegment
+	
+	if sn == null or anchor1 == null:
+		print("Can't find anchor1 or last rope segment!")
 		return
 	
-	var sn = segments[-2]
-	
-	if sn == null:
-		print("can't find last rope segment in _join_anchor1()")
-		return
-	
-	$JN.global_position = anchor1.global_position
-	sn.global_position = $JN.global_position - sn.start_point
+	update_anchor1()
 	
 	$JN.node_a = $JN.get_path_to(sn)
 	$JN.node_b = $JN.get_path_to(anchor1)
