@@ -26,8 +26,13 @@ func _process(_delta: float) -> void:
 
 # SIGNAL CALLBACKS
 
-func _on_player_died():
+func _handle_player_died():
+	# TODO: - Need game over screen or something
 	get_tree().reload_current_scene()
+
+
+func _on_player_died():
+	_handle_player_died()
 
 
 func _did_pick_up_time(add: int):
@@ -36,4 +41,5 @@ func _did_pick_up_time(add: int):
 
 
 func _on_game_over_timer_timeout() -> void:
-	get_tree().reload_current_scene()
+	#_handle_player_died()
+	pass
