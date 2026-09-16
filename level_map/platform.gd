@@ -71,7 +71,7 @@ func _configure():
 			material.albedo_color = Color.LIGHT_CYAN
 			player_max_speed = 12.0
 			player_max_jump_speed = 25.0
-			player_acceleration = 80.0
+			player_acceleration = 10.0
 			player_deceleration = 5.0
 		TerrainType.SAND:
 			material.albedo_color = Color.GOLD

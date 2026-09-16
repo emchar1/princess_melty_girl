@@ -48,8 +48,6 @@ func _apply_gravity(delta: float):
 func _move_player(delta: float):
 	var move_dir := Input.get_axis("move_left", "move_right")
 	
-	#velocity.x = move_dir * speed
-	
 	if move_dir != 0:
 		if is_on_floor():
 			velocity.x = move_toward(
