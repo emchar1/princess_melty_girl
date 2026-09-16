@@ -41,5 +41,5 @@ func _did_pick_up_time(add: int):
 
 
 func _on_game_over_timer_timeout() -> void:
-	#_handle_player_died()
+	_handle_player_died()
 	pass
