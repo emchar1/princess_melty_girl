@@ -16,6 +16,7 @@ func _ready() -> void:
 	player.dead.connect(_on_player_died)
 	
 	AudioManager.stop_all_music()
+	await get_tree().create_timer(1.0).timeout #prevents intro+loop sync issues
 	AudioManager.play_music(AudioData.Music.BGM)
 
 
