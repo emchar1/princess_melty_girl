@@ -10,7 +10,7 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for pickup_timer in $LevelMap/Pickups.get_children():
+	for pickup_timer in get_tree().get_nodes_in_group("pickup"):
 		pickup_timer.picked_up_time.connect(_did_pick_up_time)
 	
 	player.dead.connect(_on_player_died)

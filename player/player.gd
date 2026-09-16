@@ -5,12 +5,14 @@ class_name Player
 
 signal dead
 
-@export var speed: float = 10
-@export var jump_speed: float = 25
-@export var acceleration: float = 40.0
-@export var deceleration: float = 50.0
 @export var coyote_hang_time: float = 0.18
 
+var speed: float = 10
+var jump_speed: float = 25
+var acceleration: float = 40.0
+var deceleration: float = 50.0
+
+var current_platform: Platform
 var coyote_time: Timer
 var is_jumping: bool = false
 var is_falling: bool = false
@@ -26,6 +28,7 @@ func _physics_process(delta: float) -> void:
 	_apply_gravity(delta)
 	_move_player(delta)
 	_process_jumping()
+	_get_current_platform()
 	move_and_slide()
 	
 	# Comment to disable coyote time.
@@ -77,6 +80,31 @@ func _process_jumping():
 		velocity.y = jump_speed
 		is_jumping = true
 		AudioManager.play(AudioData.AudioKey.JUMP)
+
+
+func _get_current_platform():
+	if not is_on_floor():
+		current_platform = null
+		return
+	
+	for i in get_slide_collision_count():
+		var collision := get_slide_collision(i)
+		
+		# Ignores walls and only sets current platform if standing on floor.
+		if collision.get_normal().dot(Vector3.UP) > 0.7:
+			var platform = collision.get_collider() as Platform
+			
+			if current_platform == platform:
+				break
+			
+			current_platform = platform
+			
+			speed = current_platform.player_max_speed
+			jump_speed = current_platform.player_max_jump_speed
+			acceleration = current_platform.player_acceleration
+			deceleration = current_platform.player_deceleration
+			
+			break
 
 
 func _add_coyote_time():

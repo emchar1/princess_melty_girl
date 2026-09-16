@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://be8tlgw3x5ptl"]
+
+[ext_resource type="Script" uid="uid://da3ouv6thrttv" path="res://level_map/platform.gd" id="1_7qnji"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_u3pco"]
+resource_local_to_scene = true
+size = Vector3(40, 1, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h7sqv"]
+resource_local_to_scene = true
+albedo_color = Color(0.19607843, 0.8039216, 0.19607843, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u3pco"]
+resource_local_to_scene = true
+size = Vector3(40, 1, 5)
+
+[node name="Platform" type="StaticBody3D" unique_id=2133534198]
+collision_mask = 0
+script = ExtResource("1_7qnji")
+terrain_type = null
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1223923602]
+mesh = SubResource("BoxMesh_u3pco")
+surface_material_override/0 = SubResource("StandardMaterial3D_h7sqv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1180761546]
+shape = SubResource("BoxShape3D_u3pco")

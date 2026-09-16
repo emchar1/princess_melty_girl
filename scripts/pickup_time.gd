@@ -7,6 +7,8 @@ signal picked_up_time(add: int)
 @export var add_time: int = 10
 @onready var sprite = $Sprite3D
 
+var is_picked_up: bool = false
+
 
 # FUNCTIONS
 
@@ -17,6 +19,11 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player") or body.is_in_group("princess"):
+		if is_picked_up:
+			return
+		
+		is_picked_up = true
+		
 		var speed := 0.25
 		var tween = create_tween()
 		
