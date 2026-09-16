@@ -23,3 +23,19 @@ texture = ExtResource("1_kvulj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=805472634]
 shape = SubResource("CapsuleShape3D_lb7rc")
+
+[node name="TimerHUD" type="Node3D" parent="." unique_id=1496348208]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="TimerLabel" type="Label3D" parent="TimerHUD" unique_id=1738791613]
+billboard = 1
+text = "30"
+font_size = 200
+outline_size = 24
+
+[node name="AddTimeLabel" type="Label3D" parent="TimerHUD" unique_id=1362605481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+modulate = Color(0, 1, 1, 1)
+text = "+10"
+font_size = 150
+outline_size = 0

@@ -6,13 +6,17 @@ class_name Princess
 @export var player: Player
 @export var rope: Rope
 
+@onready var timer_label = $TimerHUD/TimerLabel
+@onready var add_time_label = $TimerHUD/AddTimeLabel
+
 var is_dragging := false
+var add_time_tween: Tween
 
 
 # FUNCTIONS
 
 func _ready() -> void:
-	pass
+	_reset_add_time_label()
 
 
 func _physics_process(_delta: float) -> void:
@@ -28,6 +32,38 @@ func _input(event: InputEvent) -> void:
 		is_dragging = true
 	elif event.is_action_released("action_drag_weight"):
 		is_dragging = false
+
+
+# TIMER LABEL FUNCTIONS
+
+func update_timer_label(time: float):
+	if time <= 5.0:
+		timer_label.modulate = Color.RED
+	else:
+		timer_label.modulate = Color.WHITE
+	
+	timer_label.text = str(int(ceil(time)))
+
+
+func _reset_add_time_label():
+	add_time_label.modulate.a = 0.0
+	add_time_label.position.y = 0.0
+
+
+func show_add_time_label(time: int):
+	add_time_label.text = "+" + str(time)
+	add_time_label.modulate.a = 1.0
+	
+	if add_time_tween:
+		add_time_tween.kill()
+	
+	add_time_tween = create_tween()
+	add_time_tween.set_parallel()
+	add_time_tween.tween_property(add_time_label, "position:y", 1.0, 1.0)
+	add_time_tween.tween_property(add_time_label, "modulate:a", 0.0, 1.0)
+	
+	await add_time_tween.finished
+	_reset_add_time_label()
 
 
 # HELPER FUNCTIONS
