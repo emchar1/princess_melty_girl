@@ -136,7 +136,7 @@ length = 40.0
 
 [node name="Ledge" parent="Platform6" unique_id=530838630 instance=ExtResource("1_wiuvp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 6, 0)
-terrain_type = 0
+terrain_type = 2
 length = 10.0
 
 [node name="PickupTime" parent="Platform6" unique_id=517849357 instance=ExtResource("3_pq1t8")]
