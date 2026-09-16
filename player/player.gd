@@ -7,6 +7,8 @@ signal dead
 
 @export var speed: float = 10
 @export var jump_speed: float = 25
+@export var acceleration: float = 40.0
+@export var deceleration: float = 50.0
 @export var coyote_hang_time: float = 0.18
 
 var coyote_time: Timer
@@ -22,7 +24,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	_apply_gravity(delta)
-	_move_player()
+	_move_player(delta)
 	_process_jumping()
 	move_and_slide()
 	
@@ -40,13 +42,28 @@ func _apply_gravity(delta: float):
 		velocity.y += get_gravity().y * delta
 
 
-func _move_player():
+func _move_player(delta: float):
 	var move_dir := Input.get_axis("move_left", "move_right")
 	
-	velocity.x = move_dir * speed
+	#velocity.x = move_dir * speed
 	
 	if move_dir != 0:
+		if is_on_floor():
+			velocity.x = move_toward(
+				velocity.x,
+				move_dir * speed,
+				acceleration * delta
+			)
+		else:
+			velocity.x = move_dir * speed
+		
 		$Sprite3D.flip_h = move_dir < 0
+	else:
+		velocity.x = move_toward(
+			velocity.x,
+			0.0,
+			deceleration * delta
+		)
 
 
 func _process_jumping():

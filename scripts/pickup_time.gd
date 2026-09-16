@@ -16,7 +16,7 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
+	if body.is_in_group("player") or body.is_in_group("princess"):
 		var speed := 0.25
 		var tween = create_tween()
 		

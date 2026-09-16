@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://yerhnolasorx" path="res://assets/images/princess.png" id="1_kvulj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lb7rc"]
-radius = 1.0
-height = 3.0
+radius = 0.8
+height = 2.5
 
-[node name="Princess" type="RigidBody3D" unique_id=25434966]
+[node name="Princess" type="RigidBody3D" unique_id=25434966 groups=["princess"]]
 collision_layer = 32
 axis_lock_linear_z = true
 axis_lock_angular_x = true
