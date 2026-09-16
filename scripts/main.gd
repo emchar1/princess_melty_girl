@@ -4,8 +4,7 @@ extends Node3D
 
 @onready var player = $Players/Player
 @onready var game_over_timer = $GameOverTimer
-@onready var hud_time_label = $Hud/Label
-
+@onready var hud = $Hud
 
 # FUNCTIONS
 
@@ -21,7 +20,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	hud_time_label.text = str(int(ceil(game_over_timer.time_left)))
+	hud.update_timer_label(game_over_timer.time_left)
 
 
 # SIGNAL CALLBACKS
@@ -32,6 +31,7 @@ func _on_player_died():
 
 func _did_pick_up_time(add: int):
 	game_over_timer.start(game_over_timer.time_left + add)
+	hud.show_add_time_label(add)
 
 
 func _on_game_over_timer_timeout() -> void:

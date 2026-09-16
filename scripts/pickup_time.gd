@@ -5,6 +5,7 @@ extends Area3D
 signal picked_up_time(add: int)
 
 @export var add_time: int = 10
+@onready var sprite = $Sprite3D
 
 
 # FUNCTIONS
@@ -16,23 +17,16 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
+		var speed := 0.25
+		var tween = create_tween()
+		
+		tween.set_parallel()
+		tween.tween_property(sprite, "scale", Vector3(2.5, 2.5, 2.5), speed)
+		tween.tween_property(sprite, "position:z", 12.0, speed)
+		tween.tween_property(sprite, "modulate:a", 0.0, speed)
+		
 		picked_up_time.emit(add_time)
 		AudioManager.play(AudioData.AudioKey.PICKUP_TIME)
 		
-		var tween_speed := 0.25
-		var tween_scale := 2.5
-		var tween = create_tween()
-		tween.tween_property(
-			$Sprite3D,
-			"scale",
-			Vector3(tween_scale, tween_scale, tween_scale),
-			tween_speed
-		)
-		tween.parallel().tween_property(
-			$Sprite3D,
-			"modulate:a",
-			0.0,
-			tween_speed
-		)
 		await tween.finished
 		queue_free()
