@@ -5,7 +5,7 @@ class_name Platform
 # PROPERTIES
 
 enum TerrainType {
-	GRASS, MARSH, ICE, SAND, LAVA, RAINBOW
+	GRASS, GRASS2, MARSH, ICE, SAND, LAVA, RAINBOW
 }
 
 const HEIGHT = 1.0
@@ -51,6 +51,12 @@ func _configure():
 	match terrain_type:
 		TerrainType.GRASS:
 			material.albedo_color = Color.LIME_GREEN
+			player_max_speed = 10.0
+			player_max_jump_speed = 25.0
+			player_acceleration = 40.0
+			player_deceleration = 50.0
+		TerrainType.GRASS2:
+			material.albedo_color = Color.YELLOW_GREEN
 			player_max_speed = 10.0
 			player_max_jump_speed = 25.0
 			player_acceleration = 40.0
