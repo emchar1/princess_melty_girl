@@ -58,15 +58,15 @@ func _configure():
 		TerrainType.MARSH:
 			material.albedo_color = Color.WEB_PURPLE
 			player_max_speed = 5.0
-			player_max_jump_speed = 15.0
+			player_max_jump_speed = 20.0
 			player_acceleration = 20.0
 			player_deceleration = 100.0
 		TerrainType.ICE:
 			material.albedo_color = Color.LIGHT_CYAN
-			player_max_speed = 15.0
-			player_max_jump_speed = 30.0
-			player_acceleration = 10.0
-			player_deceleration = 20.0
+			player_max_speed = 12.0
+			player_max_jump_speed = 25.0
+			player_acceleration = 80.0
+			player_deceleration = 5.0
 		TerrainType.SAND:
 			material.albedo_color = Color.GOLD
 			player_max_speed = 10.0

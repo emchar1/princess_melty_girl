@@ -36,16 +36,17 @@ transform = Transform3D(1, 0, 0, 0, 0.9702957, 0.2419219, 0, -0.2419219, 0.97029
 [node name="LevelMap" parent="." unique_id=373524544 instance=ExtResource("1_0wfyh")]
 
 [node name="Players" type="Node3D" parent="." unique_id=712720316]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
 
 [node name="Player" parent="Players" unique_id=449852330 instance=ExtResource("2_sugp2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8124762, 5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Rope" parent="Players" unique_id=1766525145 node_paths=PackedStringArray("anchor0", "anchor1") instance=ExtResource("5_tefeu")]
 anchor0 = NodePath("../Player")
 anchor1 = NodePath("../Princess")
 
 [node name="Princess" parent="Players" unique_id=865348650 node_paths=PackedStringArray("player", "rope") instance=ExtResource("6_tefeu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9419384, 2.3519022, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 0)
 player = NodePath("../Player")
 rope = NodePath("../Rope")
 
