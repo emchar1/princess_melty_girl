@@ -20,6 +20,9 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if is_dragging:
 		_drag_princess()
+	
+	if player:
+		$Sprite3D.flip_h = player.global_position.x > global_position.x
 
 
 func _input(event: InputEvent) -> void:

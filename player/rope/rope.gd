@@ -114,7 +114,7 @@ func update_anchor1():
 		return
 	
 	$JN.global_position = anchor1.global_position
-	sn.global_position = $JN.global_position - sn.start_point
+	sn.global_position = $JN.global_position - sn.end_point
 
 
 # HELPER FUNCTIONS
