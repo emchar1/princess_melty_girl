@@ -9,6 +9,10 @@ height = 3.0
 
 [node name="Princess" type="RigidBody3D" unique_id=25434966]
 collision_layer = 32
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
 mass = 0.02
 script = ExtResource("1_6fqlj")
 

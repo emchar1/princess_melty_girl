@@ -15,13 +15,12 @@ radius = 0.2
 
 [node name="RopeSegment" type="RigidBody3D" unique_id=968083777]
 collision_layer = 16
+axis_lock_linear_z = true
 script = ExtResource("1_4jtqy")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=947353655]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
 mesh = SubResource("CylinderMesh_wpook")
 surface_material_override/0 = SubResource("StandardMaterial3D_u3pco")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1265124888]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
 shape = SubResource("CylinderShape3D_cxn03")
