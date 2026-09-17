@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dqoe8mtm7tejm" path="res://scenes/camera_controller.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://5bjv713d8hxf" path="res://player/rope/rope.tscn" id="5_tefeu"]
 [ext_resource type="PackedScene" uid="uid://caykrja4so5q" path="res://player/princess.tscn" id="6_tefeu"]
+[ext_resource type="Script" uid="uid://dp02dt4lfo20w" path="res://scripts/melt_timer.gd" id="7_o6xl0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jpsmn"]
 sky_top_color = Color(0.21960784, 0.6, 0.94509804, 1)
@@ -31,6 +32,7 @@ environment = SubResource("Environment_u3pco")
 transform = Transform3D(1, 0, 0, 0, 0.9702957, 0.2419219, 0, -0.2419219, 0.9702957, 0, 8, 0)
 
 [node name="CameraController" parent="." unique_id=1839571792 instance=ExtResource("3_sugp2")]
+camera_distance = 20.0
 
 [node name="LevelMap" parent="." unique_id=373524544 instance=ExtResource("1_0wfyh")]
 
@@ -49,8 +51,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 0)
 player = NodePath("../Player")
 rope = NodePath("../Rope")
 
-[node name="GameOverTimer" type="Timer" parent="." unique_id=401398663]
-wait_time = 30.0
-autostart = true
-
-[connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]
+[node name="MeltTimer" type="Node" parent="." unique_id=972518684]
+script = ExtResource("7_o6xl0")

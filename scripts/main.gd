@@ -4,7 +4,7 @@ extends Node3D
 
 @onready var player = $Players/Player
 @onready var princess = $Players/Princess
-@onready var game_over_timer = $GameOverTimer
+@onready var melt_timer = $MeltTimer
 
 # FUNCTIONS
 
@@ -13,7 +13,12 @@ func _ready() -> void:
 	for pickup_timer in get_tree().get_nodes_in_group("pickup"):
 		pickup_timer.picked_up_time.connect(_did_pick_up_time)
 	
+	for melt_zone in get_tree().get_nodes_in_group("melt_zone"):
+		melt_zone.did_melt.connect(_did_enter_melt_zone)
+		melt_zone.did_unmelt.connect(_did_enter_unmelt_zone)
+	
 	player.dead.connect(_on_player_died)
+	melt_timer.timed_out.connect(_on_melt_timer_timeout)
 	
 	AudioManager.stop_all_music()
 	await get_tree().create_timer(1.0).timeout #prevents intro+loop sync issues
@@ -21,7 +26,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	princess.update_timer_label(game_over_timer.time_left)
+	princess.update_timer_label(melt_timer.current_time)
 
 
 # SIGNAL CALLBACKS
@@ -35,11 +40,21 @@ func _on_player_died():
 	_handle_player_died()
 
 
-func _did_pick_up_time(add: int):
-	game_over_timer.start(game_over_timer.time_left + add)
-	princess.show_add_time_label(add)
+func _did_pick_up_time(time: int):
+	melt_timer.add_time(time)
+	princess.show_add_time_label(time)
 
 
-func _on_game_over_timer_timeout() -> void:
+func _did_enter_melt_zone(speed: float):
+	melt_timer.update_melt_speed(speed)
+	princess.update_timer_color(Color.YELLOW)
+
+
+func _did_enter_unmelt_zone():
+	melt_timer.update_melt_speed()
+	princess.update_timer_color(Color.WHITE)
+
+
+func _on_melt_timer_timeout() -> void:
 	_handle_player_died()
 	pass

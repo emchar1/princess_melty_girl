@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://csgxc03yt7ihn"]
 
+[ext_resource type="PackedScene" uid="uid://yrii3jluylay" path="res://level_map/melt_zone.tscn" id="1_pq1t8"]
 [ext_resource type="PackedScene" uid="uid://be8tlgw3x5ptl" path="res://level_map/platform.tscn" id="1_wiuvp"]
 [ext_resource type="PackedScene" uid="uid://big53pgka1637" path="res://scenes/pickup_time.tscn" id="3_pq1t8"]
 
@@ -58,6 +59,8 @@ length = 10.0
 
 [node name="PickupTime" parent="Platform4/Ledge" unique_id=1481862552 instance=ExtResource("3_pq1t8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="MeltZone" parent="Platform4" unique_id=763302138 instance=ExtResource("1_pq1t8")]
 
 [node name="Platform5" parent="." unique_id=240791970 instance=ExtResource("1_wiuvp")]
 transform = Transform3D(0.9999956, -0.002918877, 0.00046407914, 0.002918984, 0.9999957, -0.00022904559, -0.00046340603, 0.00023040439, 0.9999999, 192, 0, 0)
@@ -136,3 +139,5 @@ length = 10.0
 
 [node name="PickupTime" parent="Platform6" unique_id=517849357 instance=ExtResource("3_pq1t8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 15, 0)
+
+[node name="MeltZone" parent="Platform6" unique_id=1587785636 instance=ExtResource("1_pq1t8")]

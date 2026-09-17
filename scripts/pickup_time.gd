@@ -29,7 +29,7 @@ func _on_body_entered(body: Node3D) -> void:
 		
 		tween.set_parallel()
 		tween.tween_property(sprite, "scale", Vector3(2.5, 2.5, 2.5), speed)
-		tween.tween_property(sprite, "position:z", 12.0, speed)
+		tween.tween_property(sprite, "position:z", 16.0, speed)
 		tween.tween_property(sprite, "modulate:a", 0.0, speed)
 		
 		picked_up_time.emit(add_time)

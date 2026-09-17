@@ -9,8 +9,9 @@ class_name Princess
 @onready var timer_label = $TimerHUD/TimerLabel
 @onready var add_time_label = $TimerHUD/AddTimeLabel
 
-var is_dragging := false
 var add_time_tween: Tween
+var is_dragging := false
+var timer_color := Color.WHITE
 
 
 # FUNCTIONS
@@ -40,9 +41,14 @@ func update_timer_label(time: float):
 	if time <= 5.0:
 		timer_label.modulate = Color.RED
 	else:
-		timer_label.modulate = Color.WHITE
+		timer_label.modulate = timer_color
 	
 	timer_label.text = str(int(ceil(time)))
+
+
+func update_timer_color(color: Color):
+	timer_color = color
+	timer_label.modulate = color
 
 
 func _reset_add_time_label():
