@@ -147,7 +147,7 @@ current_state = 1
 [node name="Debug" type="Node3D" parent="." unique_id=308634722]
 
 [node name="Label3D" type="Label3D" parent="Debug" unique_id=1252885462]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.95003, 7.008257, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 9, 0)
 billboard = 1
 text = "GRASS/SNOW PLATFORM
 move speed = 10
@@ -157,7 +157,7 @@ font_size = 200
 horizontal_alignment = 0
 
 [node name="Label3D2" type="Label3D" parent="Debug" unique_id=1515892241]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.95558, 6.5875397, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 9, 0)
 billboard = 1
 text = "MARSH/TAR PLATFORM
 move speed = 5
@@ -167,15 +167,15 @@ font_size = 200
 horizontal_alignment = 0
 
 [node name="Label3D5" type="Label3D" parent="Debug" unique_id=477466059]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.335518, 8.248128, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.68547, 8.042274, 0)
 billboard = 1
-text = "1.) Mouse Scroll Up
-2.) LMB to Collect"
-font_size = 200
+text = "1.) Mouse scroll adjusts rope length
+2.) LMB to collect"
+font_size = 150
 horizontal_alignment = 0
 
 [node name="Label3D3" type="Label3D" parent="Debug" unique_id=1749077846]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.70158, 6.0225, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74, 9, 0)
 billboard = 1
 text = "ICE PLATFORM
 move speed = 12
@@ -185,7 +185,7 @@ font_size = 200
 horizontal_alignment = 0
 
 [node name="Label3D4" type="Label3D" parent="Debug" unique_id=257810404]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.78884, 4.8375564, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125, 6, 0)
 billboard = 1
 text = "MELT ZONE
 timer speed x2"
@@ -193,21 +193,21 @@ font_size = 200
 horizontal_alignment = 0
 
 [node name="Label3D6" type="Label3D" parent="Debug" unique_id=1993224472]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 148.82828, 3.1680303, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 148, 3, 0)
 billboard = 1
 text = "HURRY, YOU'RE MELTING! --->"
 font_size = 200
 horizontal_alignment = 0
 
 [node name="Label3D7" type="Label3D" parent="Debug" unique_id=1255488913]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 308.4381, 56.93547, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 309, 56, 0)
 billboard = 1
 text = "Fin!"
 font_size = 200
 horizontal_alignment = 0
 
 [node name="Label3D8" type="Label3D" parent="Debug" unique_id=930002801]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 273.7834, 57.453003, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 273, 59, 0)
 billboard = 1
 text = "FREEZE ZONE
 timer speed x0"

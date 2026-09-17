@@ -17,6 +17,7 @@ mass = 2.0
 script = ExtResource("1_6fqlj")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=525638918]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 pixel_size = 0.1
 texture_filter = 0
 texture = ExtResource("1_kvulj")
@@ -35,7 +36,7 @@ outline_size = 24
 
 [node name="AddTimeLabel" type="Label3D" parent="TimerHUD" unique_id=1362605481]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
-modulate = Color(0, 1, 1, 1)
+modulate = Color(0, 1, 0, 1)
 text = "+10"
 font_size = 150
 outline_size = 0

@@ -11,6 +11,7 @@ collision_layer = 2
 script = ExtResource("1_rkbax")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1750580925]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 pixel_size = 0.1
 texture_filter = 0
 texture = ExtResource("1_oul6g")
