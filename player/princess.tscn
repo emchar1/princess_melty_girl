@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://rule15drqv8p" path="res://player/princess.gd" id="1_6fqlj"]
 [ext_resource type="Texture2D" uid="uid://yerhnolasorx" path="res://assets/images/princess.png" id="1_kvulj"]
+[ext_resource type="FontFile" uid="uid://dwph08ywpqkx2" path="res://assets/fonts/Ranchers-Regular.ttf" id="3_cxqvj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lb7rc"]
 radius = 0.8
@@ -23,20 +24,24 @@ texture_filter = 0
 texture = ExtResource("1_kvulj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=805472634]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 shape = SubResource("CapsuleShape3D_lb7rc")
 
 [node name="TimerHUD" type="Node3D" parent="." unique_id=1496348208]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -1)
 
 [node name="TimerLabel" type="Label3D" parent="TimerHUD" unique_id=1738791613]
 billboard = 1
 text = "30"
-font_size = 200
-outline_size = 24
+font = ExtResource("3_cxqvj")
+font_size = 250
+outline_size = 0
 
 [node name="AddTimeLabel" type="Label3D" parent="TimerHUD" unique_id=1362605481]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+billboard = 1
 modulate = Color(0, 1, 0, 1)
 text = "+10"
-font_size = 150
+font = ExtResource("3_cxqvj")
+font_size = 200
 outline_size = 0

@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://yrii3jluylay" path="res://level_map/melt_zone.tscn" id="1_pq1t8"]
 [ext_resource type="PackedScene" uid="uid://be8tlgw3x5ptl" path="res://level_map/platform.tscn" id="1_wiuvp"]
 [ext_resource type="PackedScene" uid="uid://big53pgka1637" path="res://scenes/pickup_time.tscn" id="3_pq1t8"]
+[ext_resource type="FontFile" uid="uid://dwph08ywpqkx2" path="res://assets/fonts/Ranchers-Regular.ttf" id="4_wiuvp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lb7rc"]
 size = Vector3(1, 20, 5)
@@ -139,7 +140,7 @@ terrain_type = 3
 length = 10.0
 
 [node name="PickupTime" parent="Platform6" unique_id=517849357 instance=ExtResource("3_pq1t8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 15, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 18, 0)
 
 [node name="MeltZone" parent="Platform6" unique_id=1587785636 instance=ExtResource("1_pq1t8")]
 current_state = 1
@@ -153,7 +154,9 @@ text = "GRASS/SNOW PLATFORM
 move speed = 10
 jump height = 25
 normal movement"
+font = ExtResource("4_wiuvp")
 font_size = 200
+outline_size = 0
 horizontal_alignment = 0
 
 [node name="Label3D2" type="Label3D" parent="Debug" unique_id=1515892241]
@@ -163,7 +166,9 @@ text = "MARSH/TAR PLATFORM
 move speed = 5
 jump height = 20
 slow, heavy"
+font = ExtResource("4_wiuvp")
 font_size = 200
+outline_size = 0
 horizontal_alignment = 0
 
 [node name="Label3D5" type="Label3D" parent="Debug" unique_id=477466059]
@@ -171,7 +176,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.68547, 8.042274, 0)
 billboard = 1
 text = "1.) Mouse scroll adjusts rope length
 2.) LMB to collect"
-font_size = 150
+font = ExtResource("4_wiuvp")
+font_size = 180
+outline_size = 0
 horizontal_alignment = 0
 
 [node name="Label3D3" type="Label3D" parent="Debug" unique_id=1749077846]
@@ -181,7 +188,9 @@ text = "ICE PLATFORM
 move speed = 12
 jump height = 25
 slippery"
+font = ExtResource("4_wiuvp")
 font_size = 200
+outline_size = 0
 horizontal_alignment = 0
 
 [node name="Label3D4" type="Label3D" parent="Debug" unique_id=257810404]
@@ -189,21 +198,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125, 6, 0)
 billboard = 1
 text = "MELT ZONE
 timer speed x2"
+font = ExtResource("4_wiuvp")
 font_size = 200
+outline_size = 0
 horizontal_alignment = 0
 
 [node name="Label3D6" type="Label3D" parent="Debug" unique_id=1993224472]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 148, 3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 152, 3, 0)
 billboard = 1
 text = "HURRY, YOU'RE MELTING! --->"
+font = ExtResource("4_wiuvp")
 font_size = 200
+outline_size = 0
 horizontal_alignment = 0
 
 [node name="Label3D7" type="Label3D" parent="Debug" unique_id=1255488913]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 309, 56, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 310, 56, 0)
 billboard = 1
 text = "Fin!"
+font = ExtResource("4_wiuvp")
 font_size = 200
+outline_size = 0
 horizontal_alignment = 0
 
 [node name="Label3D8" type="Label3D" parent="Debug" unique_id=930002801]
@@ -211,5 +226,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 273, 59, 0)
 billboard = 1
 text = "FREEZE ZONE
 timer speed x0"
+font = ExtResource("4_wiuvp")
 font_size = 200
+outline_size = 0
 horizontal_alignment = 0
