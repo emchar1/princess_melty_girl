@@ -10,8 +10,10 @@ class_name Princess
 @onready var add_time_label = $TimerHUD/AddTimeLabel
 
 var add_time_tween: Tween
-var is_dragging := false
 var timer_color := Color.WHITE
+var is_dragging := false
+var gamepad_aiming := false
+var gamepad_aim_pressed := false
 
 
 # FUNCTIONS
@@ -29,9 +31,20 @@ func _physics_process(_delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("action_drag_weight"):
+	if event is InputEventMouseButton or event is InputEventMouseMotion:
+		gamepad_aiming = false
+	
+	if event.is_action_pressed("action_drag_weight") or \
+	event.is_action_pressed("action_drag_up") or \
+	event.is_action_pressed("action_drag_left") or \
+	event.is_action_pressed("action_drag_down") or \
+	event.is_action_pressed("action_drag_right"):
 		is_dragging = true
-	elif event.is_action_released("action_drag_weight"):
+	elif event.is_action_released("action_drag_weight") or \
+	event.is_action_released("action_drag_up") or \
+	event.is_action_released("action_drag_left") or \
+	event.is_action_released("action_drag_down") or \
+	event.is_action_released("action_drag_right"):
 		is_dragging = false
 
 
@@ -79,14 +92,30 @@ func _drag_princess():
 		print("Player or Rope not assigned!")
 		return
 	
-	var camera := get_viewport().get_camera_3d()
-	var player_screen_pos := camera.unproject_position(player.global_position)
-	var mouse_pos := get_viewport().get_mouse_position()
+	var direction: Vector2
+	var gamepad_stick_direction := Input.get_vector(
+		"action_drag_left",
+		"action_drag_right",
+		"action_drag_down",
+		"action_drag_up"
+	)
 	
-	var direction := Vector2(
-		mouse_pos.x - player_screen_pos.x,
-		player_screen_pos.y - mouse_pos.y
-	).normalized()
+	gamepad_aim_pressed = false
+	
+	if gamepad_stick_direction.length() > 0.1:
+		# Gamepad aiming
+		gamepad_aiming = true
+		gamepad_aim_pressed = true
+		direction = gamepad_stick_direction
+	else:
+		# Mouse aiming
+		var camera := get_viewport().get_camera_3d()
+		var player_screen_pos := camera.unproject_position(player.global_position)
+		var mouse_pos := get_viewport().get_mouse_position()
+		direction = Vector2(
+			mouse_pos.x - player_screen_pos.x,
+			player_screen_pos.y - mouse_pos.y
+		).normalized()
 	
 	var player_dist := player.global_position
 	var rope_dist := GameState.map_2d_to_3d(direction) * rope.get_rope_length()

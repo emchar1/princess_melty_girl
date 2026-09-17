@@ -3,8 +3,10 @@ class_name Rope
 
 # PROPERTIES
 
-const MIN_SEGMENT_COUNT: int = 1
-const MAX_SEGMENT_COUNT: int = 20
+const MIN_SEGMENT_COUNT = 1
+const MAX_SEGMENT_COUNT = 20
+const REPEAT_DELAY = 0.25
+const REPEAT_INTERVAL = 0.05
 
 @export var rope_segment_scene: PackedScene
 @export var anchor0: Node3D
@@ -12,6 +14,10 @@ const MAX_SEGMENT_COUNT: int = 20
 
 var segments: Array[Node3D]
 var rope_segment_count: int
+var add_rope_held := false
+var subtract_rope_held := false
+var repeat_delay_timer := 0.0
+var repeat_interval_timer := 0.0
 
 
 # INIT FUNCTIONS
@@ -35,13 +41,47 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("add_rope_segment"):
-		if rope_segment_count + 1 <= MAX_SEGMENT_COUNT:
-			add_segments()
-			AudioManager.play(AudioData.AudioKey.MOUSE_WHEEL)
+		_adjust_segment_helper(true)
 	elif event.is_action_pressed("subtract_rope_segment"):
-		if rope_segment_count - 1 >= MIN_SEGMENT_COUNT:
-			subtract_segments()
-			AudioManager.play(AudioData.AudioKey.MOUSE_WHEEL)
+		_adjust_segment_helper(false)
+
+
+func _physics_process(delta: float) -> void:
+	# Adjusts rope length when holding button (no mouse scroll):
+	if Input.is_action_just_pressed("add_rope_segment"):
+		add_rope_held = true
+	elif Input.is_action_just_pressed("subtract_rope_segment"):
+		subtract_rope_held = true
+	
+	if Input.is_action_just_released("add_rope_segment"):
+		add_rope_held = false
+		repeat_delay_timer = 0
+		repeat_interval_timer = 0
+	elif Input.is_action_just_released("subtract_rope_segment"):
+		subtract_rope_held = false
+		repeat_delay_timer = 0
+		repeat_interval_timer = 0
+	
+	if not add_rope_held and not subtract_rope_held:
+		return
+	
+	repeat_delay_timer += delta
+	
+	if repeat_delay_timer < REPEAT_DELAY:
+		repeat_interval_timer = 0
+		return
+	
+	repeat_interval_timer += delta
+	
+	if repeat_interval_timer < REPEAT_INTERVAL:
+		return
+	
+	repeat_interval_timer = 0
+	
+	if add_rope_held:
+		_adjust_segment_helper(true)
+	elif subtract_rope_held:
+		_adjust_segment_helper(false)
 
 
 # PUBLIC FUNCTIONS
@@ -104,6 +144,17 @@ func subtract_segments(amount: int = 1):
 	segments.append(jn)
 	_join_anchor1()
 	_set_rope_segment_count()
+
+
+func _adjust_segment_helper(should_add: bool):
+	if should_add:
+		if rope_segment_count + 1 <= MAX_SEGMENT_COUNT:
+			add_segments()
+			AudioManager.play(AudioData.AudioKey.MOUSE_WHEEL)
+	else:
+		if rope_segment_count - 1 >= MIN_SEGMENT_COUNT:
+			subtract_segments()
+			AudioManager.play(AudioData.AudioKey.MOUSE_WHEEL)
 
 
 func update_anchor1():

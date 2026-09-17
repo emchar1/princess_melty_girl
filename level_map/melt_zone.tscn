@@ -5,22 +5,62 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_u3pco"]
 size = Vector3(40, 22.5, 5)
 
-[sub_resource type="Gradient" id="Gradient_op2gk"]
+[sub_resource type="Gradient" id="Gradient_5pckg"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_5pckg"]
-gradient = SubResource("Gradient_op2gk")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_op2gk"]
+gradient = SubResource("Gradient_5pckg")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34xsw"]
 transparency = 1
-albedo_texture = SubResource("GradientTexture2D_5pckg")
+albedo_texture = SubResource("GradientTexture2D_op2gk")
 
 [sub_resource type="QuadMesh" id="QuadMesh_u3pco"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_34xsw")
+size = Vector2(40, 5)
+orientation = 1
+
+[sub_resource type="Gradient" id="Gradient_34xsw"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_34xsw"]
+gradient = SubResource("Gradient_34xsw")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qakjl"]
+transparency = 1
+albedo_color = Color(1, 1, 0, 1)
+albedo_texture = SubResource("GradientTexture2D_34xsw")
+
+[sub_resource type="QuadMesh" id="QuadMesh_dmix2"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_qakjl")
+size = Vector2(40, 5)
+orientation = 1
+
+[sub_resource type="Gradient" id="Gradient_qakjl"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5pckg"]
+gradient = SubResource("Gradient_qakjl")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cb3n1"]
+transparency = 1
+albedo_color = Color(1, 0.6117647, 0, 1)
+albedo_texture = SubResource("GradientTexture2D_5pckg")
+
+[sub_resource type="QuadMesh" id="QuadMesh_42slh"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_cb3n1")
 size = Vector2(40, 5)
 orientation = 1
 
@@ -34,6 +74,9 @@ emission_energy_multiplier = 8.0
 material = SubResource("StandardMaterial3D_5pckg")
 radius = 4.0
 height = 8.0
+
+[sub_resource type="Gradient" id="Gradient_op2gk"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_qakjl"]
 gradient = SubResource("Gradient_op2gk")
@@ -75,9 +118,19 @@ shape = SubResource("BoxShape3D_u3pco")
 
 [node name="MeltNodes" type="Node3D" parent="." unique_id=706964609]
 
-[node name="SpotLightMesh" type="MeshInstance3D" parent="MeltNodes" unique_id=255289488]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51, 0)
+[node name="SpotlightMeshes" type="Node3D" parent="MeltNodes" unique_id=1199950479]
+
+[node name="SpotLightMesh" type="MeshInstance3D" parent="MeltNodes/SpotlightMeshes" unique_id=255289488]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53, 0)
 mesh = SubResource("QuadMesh_u3pco")
+
+[node name="SpotLightMesh2" type="MeshInstance3D" parent="MeltNodes/SpotlightMeshes" unique_id=1256193094]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52, 0)
+mesh = SubResource("QuadMesh_dmix2")
+
+[node name="SpotLightMesh3" type="MeshInstance3D" parent="MeltNodes/SpotlightMeshes" unique_id=1021543736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51, 0)
+mesh = SubResource("QuadMesh_42slh")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="MeltNodes" unique_id=1682821627]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.5, 0)
