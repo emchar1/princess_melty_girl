@@ -22,12 +22,38 @@ func _ready() -> void:
 	_reset_add_time_label()
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if is_dragging:
-		_drag_princess()
+		_drag_princess(delta)
 	
 	if player:
 		$Sprite3D.flip_h = player.global_position.x > global_position.x
+		
+		# Reel in rope if princess gets too far away from player.
+		var dist_to_player := global_position.distance_to(
+			player.global_position
+		)
+		
+		if dist_to_player <= 25:
+			return
+		
+		for i in range(0, Rope.MAX_SEGMENT_COUNT):
+			if rope.rope_segment_count <= 1:
+				break
+			
+			var temp_timer = get_tree().create_timer(0.05)
+			
+			rope.subtract_segments()
+			AudioManager.play(AudioData.AudioKey.MOUSE_WHEEL)
+			
+			global_position = global_position.move_toward(
+				player.global_position,
+				dist_to_player * delta
+			)
+			
+			await temp_timer.timeout
+		
+		rope.update_anchor1()
 
 
 func _input(event: InputEvent) -> void:
@@ -87,7 +113,7 @@ func show_add_time_label(time: int):
 
 # HELPER FUNCTIONS
 
-func _drag_princess():
+func _drag_princess(_delta: float):
 	if player == null or rope == null:
 		print("Player or Rope not assigned!")
 		return
@@ -110,16 +136,16 @@ func _drag_princess():
 	else:
 		# Mouse aiming
 		var camera := get_viewport().get_camera_3d()
-		var player_screen_pos := camera.unproject_position(player.global_position)
+		var player_pos := camera.unproject_position(player.global_position)
 		var mouse_pos := get_viewport().get_mouse_position()
 		direction = Vector2(
-			mouse_pos.x - player_screen_pos.x,
-			player_screen_pos.y - mouse_pos.y
+			mouse_pos.x - player_pos.x,
+			player_pos.y - mouse_pos.y
 		).normalized()
 	
 	var player_dist := player.global_position
 	var rope_dist := GameState.map_2d_to_3d(direction) * rope.get_rope_length()
 	var target_pos := player_dist + rope_dist
 	
-	global_position = global_position.lerp(target_pos, 0.2)
+	global_position = target_pos
 	rope.update_anchor1()
