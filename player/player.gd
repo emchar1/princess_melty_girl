@@ -5,15 +5,20 @@ class_name Player
 
 signal dead
 
+const RUN_MULTIPLIER_MIN = 0.85
+const RUN_MULTIPLIER_MAX = 1.25
+
 @export var coyote_hang_time: float = 0.18
 
 var speed: float = 10
 var jump_speed: float = 25
+var run_multiplier: float = RUN_MULTIPLIER_MIN
 var acceleration: float = 40.0
 var deceleration: float = 50.0
 
 var current_platform: Platform
 var coyote_time: Timer
+var is_running: bool = false
 var is_jumping: bool = false
 var is_falling: bool = false
 
@@ -26,6 +31,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	_apply_gravity(delta)
+	_check_running()
 	_move_player(delta)
 	_process_jumping()
 	_get_current_platform()
@@ -45,6 +51,15 @@ func _apply_gravity(delta: float):
 		velocity.y += get_gravity().y * delta
 
 
+func _check_running():
+	is_running = Input.is_action_pressed("action_run")
+	
+	if is_running:
+		run_multiplier = RUN_MULTIPLIER_MAX
+	else:
+		run_multiplier = RUN_MULTIPLIER_MIN
+
+
 func _move_player(delta: float):
 	var move_dir := Input.get_axis("move_left", "move_right")
 	
@@ -52,11 +67,18 @@ func _move_player(delta: float):
 		if is_on_floor():
 			velocity.x = move_toward(
 				velocity.x,
-				move_dir * speed,
+				move_dir * speed * run_multiplier,
 				acceleration * delta
 			)
 		else:
-			velocity.x = move_dir * speed
+			velocity.x = move_toward(
+				velocity.x,
+				move_dir * speed * run_multiplier,
+				acceleration * delta
+			)
+			
+			# Old way: instant change... felt wrong.
+			#velocity.x = move_dir * speed * run_multiplier
 		
 		$Sprite3D.flip_h = move_dir < 0
 	else:
