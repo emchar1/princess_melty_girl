@@ -5,8 +5,6 @@ class_name MeltTimer
 
 signal timed_out()
 
-const ORIG_MELT_SPEED = 1.0
-
 @export var current_time: float = 30.0
 
 var melt_speed: float
@@ -17,7 +15,7 @@ var did_timeout: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	melt_speed = ORIG_MELT_SPEED
+	melt_speed = MeltZone.ORIG_MELT_SPEED
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,5 +34,8 @@ func add_time(time: float):
 	current_time += time
 
 
-func update_melt_speed(speed: float = ORIG_MELT_SPEED):
+func update_melt_speed(
+	_state: MeltZone.State,
+	speed: float = MeltZone.ORIG_MELT_SPEED
+):
 	melt_speed = speed

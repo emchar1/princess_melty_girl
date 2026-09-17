@@ -6,8 +6,7 @@
 size = Vector3(40, 22.5, 5)
 
 [sub_resource type="Gradient" id="Gradient_op2gk"]
-offsets = PackedFloat32Array(0.003267974, 1)
-colors = PackedColorArray(1, 1, 1, 0.5019608, 1, 1, 1, 0)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_5pckg"]
 gradient = SubResource("Gradient_op2gk")
@@ -15,25 +14,53 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_op2gk"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34xsw"]
 transparency = 1
 albedo_texture = SubResource("GradientTexture2D_5pckg")
 
 [sub_resource type="QuadMesh" id="QuadMesh_u3pco"]
-material = SubResource("StandardMaterial3D_op2gk")
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_34xsw")
 size = Vector2(40, 5)
 orientation = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5pckg"]
 albedo_color = Color(1, 1, 0.3254902, 1)
 emission_enabled = true
-emission = Color(1, 1, 0.6039216, 1)
+emission = Color(1, 1, 0.3764706, 1)
 emission_energy_multiplier = 8.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_lb7rc"]
 material = SubResource("StandardMaterial3D_5pckg")
 radius = 4.0
 height = 8.0
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qakjl"]
+gradient = SubResource("Gradient_op2gk")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_op2gk"]
+transparency = 1
+albedo_texture = SubResource("GradientTexture2D_qakjl")
+
+[sub_resource type="QuadMesh" id="QuadMesh_cb3n1"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_op2gk")
+size = Vector2(40, 5)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_47650"]
+transparency = 1
+emission_enabled = true
+emission = Color(0.5725058, 1, 0.9961242, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_2lmhc"]
+material = SubResource("StandardMaterial3D_47650")
+radius = 0.1
+height = 0.2
 
 [node name="MeltZone" type="Node3D" unique_id=763302138 groups=["melt_zone"]]
 script = ExtResource("1_op2gk")
@@ -46,19 +73,40 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetector" unique_id=1094525840]
 shape = SubResource("BoxShape3D_u3pco")
 
-[node name="SpotLightMesh" type="MeshInstance3D" parent="." unique_id=255289488]
+[node name="MeltNodes" type="Node3D" parent="." unique_id=706964609]
+
+[node name="SpotLightMesh" type="MeshInstance3D" parent="MeltNodes" unique_id=255289488]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51, 0)
 mesh = SubResource("QuadMesh_u3pco")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1682821627]
+[node name="OmniLight3D" type="OmniLight3D" parent="MeltNodes" unique_id=1682821627]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.5, 0)
-light_color = Color(1, 1, 0.47058824, 1)
+light_color = Color(1, 1, 0, 1)
 light_energy = 15.0
 omni_range = 22.5
 
-[node name="SunMesh" type="MeshInstance3D" parent="." unique_id=641624559]
+[node name="SunMesh" type="MeshInstance3D" parent="MeltNodes" unique_id=641624559]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, -40)
 mesh = SubResource("SphereMesh_lb7rc")
+
+[node name="FreezeNodes" type="Node3D" parent="." unique_id=811520666]
+visible = false
+
+[node name="SnowMesh" type="MeshInstance3D" parent="FreezeNodes" unique_id=1942996403]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51, 0)
+mesh = SubResource("QuadMesh_cb3n1")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="FreezeNodes" unique_id=1481867648]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.25, -5)
+amount = 200
+lifetime = 3.0
+mesh = SubResource("SphereMesh_2lmhc")
+emission_shape = 3
+emission_box_extents = Vector3(22.5, 11.25, 5)
+gravity = Vector3(0, -5, 8)
+initial_velocity_max = 5.0
+linear_accel_min = -10.0
+radial_accel_min = -10.0
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_area_3d_body_exited"]

@@ -45,13 +45,17 @@ func _did_pick_up_time(time: int):
 	princess.show_add_time_label(time)
 
 
-func _did_enter_melt_zone(speed: float):
-	melt_timer.update_melt_speed(speed)
-	princess.update_timer_color(Color.YELLOW)
+func _did_enter_melt_zone(state: MeltZone.State, speed: float):
+	melt_timer.update_melt_speed(state, speed)
+	
+	if state == MeltZone.State.MELT:
+		princess.update_timer_color(Color.YELLOW)
+	else:
+		princess.update_timer_color(Color.CYAN)
 
 
-func _did_enter_unmelt_zone():
-	melt_timer.update_melt_speed()
+func _did_enter_unmelt_zone(state: MeltZone.State, speed: float):
+	melt_timer.update_melt_speed(state, speed)
 	princess.update_timer_color(Color.WHITE)
 
 
