@@ -21,6 +21,7 @@ const DEPTH = 5.0
 		length = value
 		_configure()
 
+@onready var grid_map = $GridMap
 @onready var mesh = $MeshInstance3D
 @onready var collision = $CollisionShape3D
 
@@ -29,12 +30,15 @@ var player_max_jump_speed: float
 var player_acceleration: float
 var player_deceleration: float
 
+var tile_index: int
+
 
 # FUNCTIONS
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_configure()
+	_paint_platform()
 
 
 func _configure():
@@ -51,43 +55,62 @@ func _configure():
 	match terrain_type:
 		TerrainType.GRASS:
 			material.albedo_color = Color.LIME_GREEN
+			tile_index = 41
 			player_max_speed = 10.0
 			player_max_jump_speed = 25.0
 			player_acceleration = 40.0
 			player_deceleration = 50.0
 		TerrainType.GRASS2:
 			material.albedo_color = Color.YELLOW_GREEN
+			tile_index = 41
 			player_max_speed = 10.0
 			player_max_jump_speed = 25.0
 			player_acceleration = 40.0
 			player_deceleration = 50.0
 		TerrainType.MARSH:
 			material.albedo_color = Color.WEB_PURPLE
+			tile_index = 41
 			player_max_speed = 5.0
 			player_max_jump_speed = 20.0
 			player_acceleration = 20.0
 			player_deceleration = 100.0
 		TerrainType.ICE:
 			material.albedo_color = Color.LIGHT_CYAN
+			tile_index = 83
 			player_max_speed = 12.0
 			player_max_jump_speed = 25.0
 			player_acceleration = 10.0
-			player_deceleration = 5.0
+			player_deceleration = 10.0
 		TerrainType.SAND:
 			material.albedo_color = Color.GOLD
+			tile_index = 41
 			player_max_speed = 10.0
 			player_max_jump_speed = 25.0
 			player_acceleration = 30.0
 			player_deceleration = 60.0
 		TerrainType.LAVA:
 			material.albedo_color = Color.ORANGE_RED
+			tile_index = 41
 			player_max_speed = 10.0
 			player_max_jump_speed = 25.0
 			player_acceleration = 40.0
 			player_deceleration = 50.0
 		TerrainType.RAINBOW:
 			material.albedo_color = Color.BLACK
+			tile_index = 41
 			player_max_speed = 20.0
 			player_max_jump_speed = 25.0
 			player_acceleration = 40.0
 			player_deceleration = 50.0
+
+
+func _paint_platform():
+	grid_map.clear()
+	
+	grid_map.position.x = -length / 2
+	grid_map.position.z = -DEPTH / 2
+	
+	for x in range(length * 2):
+		for y in range(HEIGHT):
+			for z in range(DEPTH * 2):
+				grid_map.set_cell_item(Vector3i(x, y, z), tile_index)
