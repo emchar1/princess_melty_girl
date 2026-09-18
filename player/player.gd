@@ -112,13 +112,21 @@ func _update_moves():
 			(velocity.x > 0 and anim_sprite.flip_h):
 				_update_moves_helper(MoveState.SKID)
 			else:
-				_update_moves_helper(MoveState.RUN, run_multiplier)
+				_update_moves_helper(
+					MoveState.RUN,
+					run_multiplier,
+					true
+				)
 	else:
 		_update_moves_helper(MoveState.JUMP)
 
 
-func _update_moves_helper(state: MoveState, speed_scale: float = 1.0):
-	if move_state == state:
+func _update_moves_helper(
+	state: MoveState,
+	speed_scale: float = 1.0,
+	force_update: bool = false
+):
+	if not force_update and move_state == state:
 		return
 	
 	move_state = state
