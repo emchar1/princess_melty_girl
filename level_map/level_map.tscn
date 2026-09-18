@@ -34,7 +34,7 @@ length = 10.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Platform3" parent="." unique_id=2134412613 instance=ExtResource("1_wiuvp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91, 0, 0)
 terrain_type = 3
 length = 40.0
 
@@ -52,7 +52,7 @@ length = 10.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Platform4" parent="." unique_id=1104206238 instance=ExtResource("1_wiuvp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 144, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 143, 0, 0)
 length = 40.0
 
 [node name="Ledge" parent="Platform4" unique_id=1794286431 instance=ExtResource("1_wiuvp")]
@@ -66,7 +66,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 [node name="MeltZone" parent="Platform4" unique_id=953174764 instance=ExtResource("1_pq1t8")]
 
 [node name="Platform5" parent="." unique_id=240791970 instance=ExtResource("1_wiuvp")]
-transform = Transform3D(0.9999956, -0.002918877, 0.00046407914, 0.002918984, 0.9999957, -0.00022904559, -0.00046340603, 0.00023040439, 0.9999999, 192, 0, 0)
+transform = Transform3D(0.9999956, -0.002918877, 0.00046407914, 0.002918984, 0.9999957, -0.00022904559, -0.00046340603, 0.00023040439, 0.9999999, 191, 0, 0)
 length = 40.0
 
 [node name="Ledge" parent="Platform5" unique_id=285675579 instance=ExtResource("1_wiuvp")]
@@ -131,7 +131,7 @@ terrain_type = 1
 length = 10.0
 
 [node name="Platform6" parent="." unique_id=2145351480 instance=ExtResource("1_wiuvp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 292, 54, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 291, 54, 0)
 length = 40.0
 
 [node name="Ledge" parent="Platform6" unique_id=530838630 instance=ExtResource("1_wiuvp")]
