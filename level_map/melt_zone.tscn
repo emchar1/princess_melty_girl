@@ -21,7 +21,7 @@ albedo_texture = SubResource("GradientTexture2D_op2gk")
 [sub_resource type="QuadMesh" id="QuadMesh_u3pco"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_34xsw")
-size = Vector2(40, 5)
+size = Vector2(40.5, 5)
 orientation = 1
 
 [sub_resource type="Gradient" id="Gradient_34xsw"]
@@ -91,7 +91,7 @@ albedo_texture = SubResource("GradientTexture2D_qakjl")
 [sub_resource type="QuadMesh" id="QuadMesh_cb3n1"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_op2gk")
-size = Vector2(40, 5)
+size = Vector2(40.5, 5)
 orientation = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_47650"]
@@ -121,7 +121,7 @@ shape = SubResource("BoxShape3D_u3pco")
 [node name="SpotlightMeshes" type="Node3D" parent="MeltNodes" unique_id=1199950479]
 
 [node name="SpotLightMesh" type="MeshInstance3D" parent="MeltNodes/SpotlightMeshes" unique_id=255289488]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.53, 0)
 mesh = SubResource("QuadMesh_u3pco")
 
 [node name="SpotLightMesh2" type="MeshInstance3D" parent="MeltNodes/SpotlightMeshes" unique_id=1256193094]
@@ -146,7 +146,7 @@ mesh = SubResource("SphereMesh_lb7rc")
 visible = false
 
 [node name="SnowMesh" type="MeshInstance3D" parent="FreezeNodes" unique_id=1942996403]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.51, 0)
 mesh = SubResource("QuadMesh_cb3n1")
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="FreezeNodes" unique_id=1481867648]
