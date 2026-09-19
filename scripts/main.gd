@@ -5,6 +5,7 @@ extends Node3D
 @onready var player = $Players/Player
 @onready var princess = $Players/Princess
 @onready var melt_timer = $MeltTimer
+@onready var hud = $Hud
 
 # FUNCTIONS
 
@@ -19,6 +20,10 @@ func _ready() -> void:
 	
 	player.dead.connect(_on_player_died)
 	melt_timer.timed_out.connect(_on_melt_timer_timeout)
+	
+	princess.dragging_changed.connect(_on_princess_dragged)
+	princess.gamepad_toggled.connect(_on_gamepad_toggled)
+	princess.mouse_moved.connect(_on_mouse_moved)
 	
 	AudioManager.stop_all_music()
 	await get_tree().create_timer(1.0).timeout #prevents intro+loop sync issues
@@ -38,6 +43,18 @@ func _handle_player_died():
 
 func _on_player_died():
 	_handle_player_died()
+
+
+func _on_princess_dragged(dragged: bool):
+	hud.did_drag_dummy = dragged
+
+
+func _on_gamepad_toggled(active: bool):
+	hud.point_sprite.visible = not active
+
+
+func _on_mouse_moved(active: bool):
+	hud.point_sprite.visible = active
 
 
 func _did_pick_up_time(time: int):

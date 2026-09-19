@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://5bjv713d8hxf" path="res://player/rope/rope.tscn" id="5_tefeu"]
 [ext_resource type="PackedScene" uid="uid://caykrja4so5q" path="res://player/princess.tscn" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://dp02dt4lfo20w" path="res://scripts/melt_timer.gd" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://bm5b3nqwa1k2k" path="res://scenes/hud.tscn" id="7_tipki"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jpsmn"]
 sky_top_color = Color(0.21960784, 0.6, 0.94509804, 1)
@@ -52,6 +53,8 @@ anchor1 = NodePath("../Princess")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 0)
 player = NodePath("../Player")
 rope = NodePath("../Rope")
+
+[node name="Hud" parent="." unique_id=552210213 instance=ExtResource("7_tipki")]
 
 [node name="MeltTimer" type="Node" parent="." unique_id=972518684]
 script = ExtResource("7_o6xl0")

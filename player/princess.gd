@@ -3,6 +3,10 @@ class_name Princess
 
 # PROPERTIES
 
+signal dragging_changed(drag: bool)
+signal gamepad_toggled(active: bool)
+signal mouse_moved(active: bool)
+
 @export var player: Player
 @export var rope: Rope
 
@@ -11,9 +15,26 @@ class_name Princess
 
 var add_time_tween: Tween
 var timer_color := Color.WHITE
-var is_dragging := false
-var gamepad_aiming := false
+var last_mouse_active: float = 0
+var was_dragging := false
+
+var is_dragging := false:
+	set(value):
+		if is_dragging == value:
+			return
+		
+		is_dragging = value
+		dragging_changed.emit(value)
+
 var gamepad_aim_pressed := false
+
+var gamepad_aiming := false:
+	set(value):
+		if gamepad_aiming == value:
+			return
+		
+		gamepad_aiming = value
+		gamepad_toggled.emit(value)
 
 
 # FUNCTIONS
@@ -23,8 +44,18 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	last_mouse_active += delta
+	
+	if Input.is_action_pressed("action_drag_weight"):
+		last_mouse_active = 0
+	
+	if last_mouse_active > 1.0:
+		mouse_moved.emit(false)
+	
 	if is_dragging:
 		_drag_princess(delta)
+	else:
+		was_dragging = true
 	
 	if player:
 		$Sprite3D.flip_h = player.global_position.x > global_position.x
@@ -59,6 +90,9 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
 		gamepad_aiming = false
+		last_mouse_active = 0
+		mouse_moved.emit(true)
+
 	
 	if event.is_action_pressed("action_drag_weight") or \
 	event.is_action_pressed("action_drag_up") or \
@@ -128,6 +162,10 @@ func _drag_princess(_delta: float):
 	
 	gamepad_aim_pressed = false
 	
+	var camera := get_viewport().get_camera_3d()
+	var player_pos := camera.unproject_position(player.global_position)
+	var mouse_pos := get_viewport().get_mouse_position()
+	
 	if gamepad_stick_direction.length() > 0.1:
 		# Gamepad aiming
 		gamepad_aiming = true
@@ -135,9 +173,6 @@ func _drag_princess(_delta: float):
 		direction = gamepad_stick_direction
 	else:
 		# Mouse aiming
-		var camera := get_viewport().get_camera_3d()
-		var player_pos := camera.unproject_position(player.global_position)
-		var mouse_pos := get_viewport().get_mouse_position()
 		direction = Vector2(
 			mouse_pos.x - player_pos.x,
 			player_pos.y - mouse_pos.y
@@ -149,3 +184,15 @@ func _drag_princess(_delta: float):
 	
 	global_position = target_pos
 	rope.update_anchor1()
+	
+	# One time mouse warp
+	if was_dragging:
+		was_dragging = false
+		
+		var target_screen_pos = camera.unproject_position(target_pos)
+		var viewport_size := get_viewport().get_visible_rect().size
+		var window_size := DisplayServer.window_get_size()
+		var window_scale := Vector2(window_size) / viewport_size
+		var adapted_mouse_pos = target_screen_pos * window_scale
+		
+		Input.warp_mouse(adapted_mouse_pos)

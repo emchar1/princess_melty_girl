@@ -1,6 +1,35 @@
 [gd_scene format=3 uid="uid://bm5b3nqwa1k2k"]
 
 [ext_resource type="Script" uid="uid://br3522r5b0cgt" path="res://scripts/hud.gd" id="1_ahhtf"]
+[ext_resource type="Texture2D" uid="uid://dws1vnvbuhct3" path="res://assets/images/point.png" id="2_5ysmq"]
+[ext_resource type="Texture2D" uid="uid://b1s7e6rm6uvp5" path="res://assets/images/pinch.png" id="3_6fi6k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uo2fv"]
+atlas = ExtResource("2_5ysmq")
+region = Rect2(0, 0, 415, 415)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_047uy"]
+atlas = ExtResource("3_6fi6k")
+region = Rect2(0, 0, 487, 415)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u3pco"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uo2fv")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_047uy")
+}],
+"loop": 1,
+"name": &"pinch",
+"speed": 5.0
+}]
 
 [node name="Hud" type="Control" unique_id=552210213]
 layout_mode = 3
@@ -12,6 +41,7 @@ grow_vertical = 2
 script = ExtResource("1_ahhtf")
 
 [node name="TimerLabel" type="Label" parent="." unique_id=963089799]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -26,6 +56,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AddTimeLabel" type="Label" parent="." unique_id=961330919]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -39,3 +70,10 @@ theme_override_font_sizes/font_size = 60
 text = "+10"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PointSprite2D" type="AnimatedSprite2D" parent="." unique_id=1934563457]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_u3pco")
+animation = &"idle"
+autoplay = "idle"
+offset = Vector2(207, 207)
