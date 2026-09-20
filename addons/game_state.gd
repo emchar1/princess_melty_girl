@@ -12,6 +12,8 @@ const COLLISION_PICKUP = 4
 var music_volume: float = 1.0
 var sfx_volume: float = 1.0
 
+var checkpoint: Vector3 = Vector3(-10, 0, 0)
+
 
 # FUNCTIONS
 
@@ -21,3 +23,7 @@ func map_2d_to_3d(vector2: Vector2) -> Vector3:
 
 func map_3d_to_2d(vector3: Vector3) -> Vector2:
 	return Vector2(vector3.x, vector3.y)
+
+
+func set_checkpoint(spawn_point: Vector3):
+	checkpoint = spawn_point
