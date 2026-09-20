@@ -27,6 +27,7 @@ glow_strength = 1.3
 
 [node name="Main" type="Node3D" unique_id=881640253]
 script = ExtResource("1_jyhfs")
+camera_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1490713581]
 environment = SubResource("Environment_u3pco")

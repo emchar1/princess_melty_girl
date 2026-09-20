@@ -2,10 +2,13 @@ extends Node3D
 
 # PROPERTIES
 
+@export var camera_mode: CameraController.CameraMode
+
 @onready var player = $Players/Player
 @onready var princess = $Players/Princess
 @onready var melt_timer = $MeltTimer
 @onready var hud = $Hud
+@onready var camera = $CameraController
 
 # FUNCTIONS
 
@@ -20,6 +23,8 @@ func _ready() -> void:
 	
 	player.dead.connect(_on_player_died)
 	melt_timer.timed_out.connect(_on_melt_timer_timeout)
+	
+	camera.mode = camera_mode
 	
 	princess.dragging_changed.connect(_on_princess_dragged)
 	princess.gamepad_toggled.connect(_on_gamepad_toggled)

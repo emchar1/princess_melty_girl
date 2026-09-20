@@ -15,7 +15,9 @@ var did_drag_dummy: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_reset_add_time_label()
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	
+	# Uncomment to hide mouse cursor. Requires Godot restart
+	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 
 func _physics_process(_delta: float) -> void:
@@ -29,7 +31,6 @@ func _physics_process(_delta: float) -> void:
 		mouse_offset = Vector2.ZERO
 	
 	point_sprite.position = get_viewport().get_mouse_position() + mouse_offset
-
 
 
 func update_timer_label(time: float):
