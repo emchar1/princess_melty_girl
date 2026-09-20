@@ -13,6 +13,7 @@ enum CameraMode {
 @export var camera_distance: float = 15.0
 @export var camera_height: float = 8.0
 @export var tilt_deg: float = -14.0
+@export var fov: float = 75.0
 @export_range(0.0, 1.0) var follow_smoothing = 0.05
 
 var mode = CameraMode.LOOK_2D
@@ -53,18 +54,27 @@ func follow_player_2d():
 	
 	global_position = global_position.lerp(target_position, follow_smoothing)
 	rotation.x = deg_to_rad(tilt_deg)
+	camera.fov = fov
 
 
-# TODO: - Incomplete implementation
 func follow_player_3d():
 	if player == null:
 		return
 	
+	var target_height: float
+	
+	if player.global_position.y < camera_follow_height:
+		target_height = camera_height
+	else:
+		target_height = player.global_position.y
+	
 	var target_position := Vector3(
-		player.global_position.x + camera_distance,
-		camera_height,
+		player.global_position.x - camera_distance,
+		target_height,
 		player.global_position.z
 	)
 	
 	global_position = global_position.lerp(target_position, follow_smoothing)
-	rotation.z = deg_to_rad(tilt_deg)
+	rotation.x = deg_to_rad(tilt_deg)
+	rotation.y = -PI / 2
+	camera.fov = fov

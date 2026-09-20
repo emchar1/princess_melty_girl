@@ -26,8 +26,6 @@ var is_dragging := false:
 		is_dragging = value
 		dragging_changed.emit(value)
 
-var gamepad_aim_pressed := false
-
 var gamepad_aiming := false:
 	set(value):
 		if gamepad_aiming == value:
@@ -160,8 +158,6 @@ func _drag_princess(_delta: float):
 		"action_drag_up"
 	)
 	
-	gamepad_aim_pressed = false
-	
 	var camera := get_viewport().get_camera_3d()
 	var player_pos := camera.unproject_position(player.global_position)
 	var mouse_pos := get_viewport().get_mouse_position()
@@ -169,7 +165,6 @@ func _drag_princess(_delta: float):
 	if gamepad_stick_direction.length() > 0.1:
 		# Gamepad aiming
 		gamepad_aiming = true
-		gamepad_aim_pressed = true
 		direction = gamepad_stick_direction
 	else:
 		# Mouse aiming
