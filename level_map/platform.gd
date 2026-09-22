@@ -67,7 +67,7 @@ func _configure():
 			player_acceleration = 20.0
 			player_deceleration = 100.0
 			
-			GameState._apply_kenney_variation_texture(grid_map, tile_index)
+			_apply_kenney_variation_texture()
 		TerrainType.ICE:
 			tile_index = 83
 			player_max_speed = 12.0
@@ -104,3 +104,17 @@ func _paint_platform():
 		for y in range(HEIGHT):
 			for z in range(DEPTH * 2):
 				grid_map.set_cell_item(Vector3i(x, y, z), tile_index)
+
+
+func _apply_kenney_variation_texture():
+	var mesh_library = grid_map.mesh_library.duplicate()
+	var mesh = mesh_library.get_item_mesh(tile_index).duplicate()
+	var mat = mesh.surface_get_material(0).duplicate() as StandardMaterial3D
+	var albedo_texture = preload(
+		"res://assets/kenney_platformer-kit/Models/Textures/variation-a.png"
+	)
+	
+	mat.albedo_texture = albedo_texture
+	mesh.surface_set_material(0, mat)
+	mesh_library.set_item_mesh(tile_index, mesh)
+	grid_map.mesh_library = mesh_library
