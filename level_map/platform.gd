@@ -22,7 +22,6 @@ const DEPTH = 5.0
 		_configure()
 
 @onready var grid_map = $GridMap
-@onready var mesh = $MeshInstance3D
 @onready var collision = $CollisionShape3D
 
 var player_max_speed: float
@@ -42,61 +41,52 @@ func _ready() -> void:
 
 
 func _configure():
-	if mesh == null or collision == null:
+	if collision == null:
 		return
 	
-	var material = mesh.get_surface_override_material(0) as StandardMaterial3D
-	var box_mesh = mesh.mesh as BoxMesh
 	var collision_shape = collision.shape as BoxShape3D
-	
-	box_mesh.size = Vector3(length, HEIGHT, DEPTH)
-	collision_shape.size = box_mesh.size
+	collision_shape.size = Vector3(length, HEIGHT, DEPTH)
 	
 	match terrain_type:
 		TerrainType.GRASS:
-			material.albedo_color = Color.LIME_GREEN
 			tile_index = 41
 			player_max_speed = 10.0
 			player_max_jump_speed = 25.0
 			player_acceleration = 40.0
 			player_deceleration = 50.0
 		TerrainType.GRASS2:
-			material.albedo_color = Color.YELLOW_GREEN
 			tile_index = 41
 			player_max_speed = 10.0
 			player_max_jump_speed = 25.0
 			player_acceleration = 40.0
 			player_deceleration = 50.0
 		TerrainType.MARSH:
-			material.albedo_color = Color.WEB_PURPLE
 			tile_index = 41
 			player_max_speed = 5.0
 			player_max_jump_speed = 20.0
 			player_acceleration = 20.0
 			player_deceleration = 100.0
+			
+			GameState._apply_kenney_variation_texture(grid_map, tile_index)
 		TerrainType.ICE:
-			material.albedo_color = Color.LIGHT_CYAN
 			tile_index = 83
 			player_max_speed = 12.0
 			player_max_jump_speed = 25.0
 			player_acceleration = 10.0
 			player_deceleration = 10.0
 		TerrainType.SAND:
-			material.albedo_color = Color.GOLD
 			tile_index = 41
 			player_max_speed = 10.0
 			player_max_jump_speed = 25.0
 			player_acceleration = 30.0
 			player_deceleration = 60.0
 		TerrainType.LAVA:
-			material.albedo_color = Color.ORANGE_RED
 			tile_index = 41
 			player_max_speed = 10.0
 			player_max_jump_speed = 25.0
 			player_acceleration = 40.0
 			player_deceleration = 50.0
 		TerrainType.RAINBOW:
-			material.albedo_color = Color.BLACK
 			tile_index = 41
 			player_max_speed = 20.0
 			player_max_jump_speed = 25.0

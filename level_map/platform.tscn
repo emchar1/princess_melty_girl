@@ -3,14 +3,6 @@
 [ext_resource type="Script" uid="uid://da3ouv6thrttv" path="res://level_map/platform.gd" id="1_7qnji"]
 [ext_resource type="MeshLibrary" uid="uid://bcxwj53isu0ak" path="res://level_map/platformer_library.meshlib" id="4_h7ilq"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_u3pco"]
-resource_local_to_scene = true
-size = Vector3(1, 1, 5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h7sqv"]
-resource_local_to_scene = true
-albedo_color = Color(0.19607843, 0.8039216, 0.19607843, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_u3pco"]
 resource_local_to_scene = true
 size = Vector3(1, 1, 5)
@@ -28,11 +20,6 @@ data = {
 "cells": PackedInt32Array(0, 0, 41, 0, 1, 41, 0, 2, 41, 0, 3, 41, 0, 4, 41, 0, 5, 41, 0, 6, 41, 0, 7, 41, 0, 8, 41, 0, 9, 41, 1, 0, 41, 1, 1, 41, 1, 2, 41, 1, 3, 41, 1, 4, 41, 1, 5, 41, 1, 6, 41, 1, 7, 41, 1, 8, 41, 1, 9, 41)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1223923602]
-visible = false
-mesh = SubResource("BoxMesh_u3pco")
-surface_material_override/0 = SubResource("StandardMaterial3D_h7sqv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1180761546]
 shape = SubResource("BoxShape3D_u3pco")
