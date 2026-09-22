@@ -4,6 +4,7 @@ extends Node3D
 
 @export var camera_mode: CameraController.CameraMode
 
+@onready var all_players = $Players
 @onready var player = $Players/Player
 @onready var princess = $Players/Princess
 @onready var melt_timer = $MeltTimer
@@ -21,7 +22,7 @@ func _ready() -> void:
 		melt_zone.did_melt.connect(_did_enter_melt_zone)
 		melt_zone.did_unmelt.connect(_did_enter_unmelt_zone)
 	
-	$Players.position = GameState.checkpoint
+	all_players.position = GameState.checkpoint
 	
 	player.dead.connect(_on_player_died)
 	melt_timer.timed_out.connect(_on_melt_timer_timeout)
